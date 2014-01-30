@@ -1,0 +1,32 @@
+Ports
+	EXPOSE :80						Nginx where we can see the dashboards - will want to access this outside the container
+	EXPOSE :2003					Don't need this outside the container as we always right through statsd and never directly to graphite - so remove this
+	EXPOSE :2004					? Dumping this, don't know what this is
+	EXPOSE :7002					? Dumping this, don't know what this is
+	EXPOSE :8125/udp				Need this as this is where statsd listens
+	EXPOSE :8126					Might get rid of this as it does expose delcounters method etc.
+
+
+Pending
+	Do we need aggregator app ?
+	Do we need aggregator app config with retention details ?
+	Do we need a relay ?
+	What is pickle
+		Batch writes ?
+
+	Why does echo stats | nc localhost 8126 sometimes fail, always works if not on host
+	ufw rules
+
+	node installation
+		statsd is from head
+			Can we use wgte rather than git ?
+
+	Dockerfile 
+		Complete exposes
+		Data volumes
+		Cmd
+		Remove vim
+
+	Nginix - use include file as normal rather than inlined file
+
+

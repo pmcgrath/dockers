@@ -45,9 +45,9 @@ RUN chmod 0664 /opt/graphite/storage/graphite.db
 RUN cd /opt/graphite/webapp/graphite && python manage.py syncdb --noinput
 
 # Ports
-EXPOSE :80
-EXPOSE :2003
-EXPOSE :2004
+EXPOSE :80						?pmcg nginx where we can see the dashboards - will want to access this outside the container
+EXPOSE :2003					?pmcg only need this inside - so statsd can write to graphite
+EXPOSE :2004				
 EXPOSE :7002
 EXPOSE :8125/udp
 EXPOSE :8126
