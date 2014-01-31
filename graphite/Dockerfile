@@ -1,6 +1,8 @@
+#
 # Based on 
 #	https://github.com/nickstenning/dockerfiles/blob/master/graphite/Dockerfile
 #	https://github.com/mattbaird/docker-statsd/blob/master/Dockerfile
+# See readme file
 #
 FROM ubuntu:12.04
 RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
@@ -44,11 +46,8 @@ RUN chmod 0775 /opt/graphite/storage/whisper
 RUN chmod 0664 /opt/graphite/storage/graphite.db
 RUN cd /opt/graphite/webapp/graphite && python manage.py syncdb --noinput
 
-# Ports
-EXPOSE :80						?pmcg nginx where we can see the dashboards - will want to access this outside the container
-EXPOSE :2003					?pmcg only need this inside - so statsd can write to graphite
-EXPOSE :2004				
-EXPOSE :7002
+# Ports - Graphite web app and the stats ports only
+EXPOSE :80
 EXPOSE :8125/udp
 EXPOSE :8126
 

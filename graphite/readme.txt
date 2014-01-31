@@ -1,3 +1,5 @@
+To see carbon aggregator inclusion see sha a1d236a853ea5c2c813b44ea8b5ca9cb9ec62ace
+
 sudo docker run -t -i -p ... bash
 sudo docker run -t -i -p 80:80 -p 8125:8125/udp -p 8126:8126 nmcg/g1 bash
 
