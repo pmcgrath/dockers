@@ -30,3 +30,35 @@ Pending
 	Nginix - use include file as normal rather than inlined file
 
 
+
+============================
+Noel
+============================
+see http://stackoverflow.com/questions/21467929/graphite-simple-carbon-installment
+
+Ports	Expose Externally
+80	 	Y					the graphite web interface
+2003	N 					2003 default port for carbon see https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol
+2004	Not required		Used for sending batched(pickle protocol) see https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-pickle-protocol			
+7002	Y					the carbon-cache query port (used by the web interface) see "CARBONLINK_HOSTS" @ https://graphite.readthedocs.org/en/latest/config-local-settings.html#cluster-configuration and https://answers.launchpad.net/graphite/+question/170630
+
+8125/udp Y
+8126
+
+
+carbon.conf file
+[relay]
+and
+[aggregator]
+
+Dont believe we need these - In simple installations, there is typically only one daemon, carbon-cache.py
+relay 
+	carbon-relay.py serves two distinct purposes: replication and sharding.
+aggregator
+	carbon-aggregator.py can be run in front of carbon-cache.py to buffer metrics over time before reporting them into whisper.
+
+see http://graphite.readthedocs.org/en/latest/carbon-daemons.html
+
+
+storage-aggregation.conf file
+required - see http://stackoverflow.com/questions/17474505/getting-accurate-graphite-stats-counts
