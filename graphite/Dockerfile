@@ -37,11 +37,16 @@ ADD storage-schemas.conf /opt/graphite/conf/storage-schemas.conf
 ADD local_settings.py /opt/graphite/webapp/graphite/local_settings.py
 ADD config.js /opt/statsd/config.js
 
+# Permissions
+RUN chown -R www-data /opt/graphite/storage
+
 # Ports - Graphite web app and the stats ports only
 EXPOSE 80
 EXPOSE 8125/udp
 EXPOSE 8126
 
 # Pending
-#volumes\data
-#CMD ["/usr/bin/supervisord"]
+# Volumes\data
+
+# Main process
+#CMD ['/usr/bin/supervisord']
