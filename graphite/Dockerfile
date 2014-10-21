@@ -37,20 +37,16 @@ ADD storage-schemas.conf /opt/graphite/conf/storage-schemas.conf
 ADD local_settings.py /opt/graphite/webapp/graphite/local_settings.py
 ADD config.js /opt/statsd/config.js
 
-# Set various permissions
-RUN touch /opt/graphite/storage/graphite.db
-RUN touch /opt/graphite/storage/index
+# Permissions
 RUN chown -R www-data /opt/graphite/storage
-RUN chmod 0775 /opt/graphite/storage
-RUN chmod 0775 /opt/graphite/storage/whisper
-RUN chmod 0664 /opt/graphite/storage/graphite.db
-RUN cd /opt/graphite/webapp/graphite && python manage.py syncdb --noinput
 
 # Ports - Graphite web app and the stats ports only
-EXPOSE :80
-EXPOSE :8125/udp
-EXPOSE :8126
+EXPOSE 80
+EXPOSE 8125/udp
+EXPOSE 8126
 
 # Pending
-#volumes\data
-#cmd
+# Volumes\data
+
+# Main process
+#CMD ['/usr/bin/supervisord']
